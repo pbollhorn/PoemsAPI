@@ -15,7 +15,9 @@ public class Poem {
     private Integer id;
 
     private String name;
-    private String text;
     private String author;
     private Integer year;
+
+    @Column(nullable = false, length=10000)
+    private String text;
 }
