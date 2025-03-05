@@ -15,6 +15,7 @@ public class PoemController {
     public static void addRoutes(String endpoint, Javalin app) {
         app.get(endpoint + "/", ctx -> getAll(ctx));
         app.get(endpoint + "/{id}", ctx -> getById(ctx));
+        app.post(endpoint + "/", ctx -> create(ctx));
 
     }
 
@@ -27,6 +28,10 @@ public class PoemController {
         int id = Integer.parseInt(ctx.pathParam("id"));
         PoemDto poemDto = poemDao.readById(id);
         ctx.json(poemDto);
+    }
+
+    private static void create(Context ctx) {
+
     }
 
 }
