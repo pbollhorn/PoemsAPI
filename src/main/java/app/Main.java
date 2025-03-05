@@ -23,13 +23,15 @@ public class Main {
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
         try {
             // Read JSON file into an array of PoemDto objects
-            PoemDto[] poems = objectMapper.readValue(new File("src/main/resources/poems.json"), PoemDto[].class);
+            PoemDto[] poemDtos = objectMapper.readValue(new File("src/main/resources/poems.json"), PoemDto[].class);
 
-            // Print result
-            for (PoemDto p : poems) {
+            // Persits objects to database
+            for (PoemDto p : poemDtos) {
                 System.out.println(p);
+                poemDao.create(p);
             }
 
         } catch (IOException e) {

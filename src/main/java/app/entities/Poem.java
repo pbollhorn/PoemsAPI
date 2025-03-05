@@ -29,6 +29,7 @@ public class Poem {
         this.name = poemDto.name();
         this.author = poemDto.author();
         this.year = poemDto.year();
+        this.text = poemDto.text();
     }
 
 }
