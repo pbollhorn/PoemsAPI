@@ -14,9 +14,8 @@ public class Poem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable=false)
-    private String poem;
-
+    private String name;
+    private String text;
     private String author;
     private Integer year;
 }
