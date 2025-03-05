@@ -13,8 +13,8 @@ public class PoemController {
     private static PoemDao poemDao = PoemDao.getInstance();
 
     public static void addRoutes(String endpoint, Javalin app) {
-
         app.get(endpoint + "/", ctx -> getAll(ctx));
+        app.get(endpoint + "/{id}", ctx -> getById(ctx));
 
     }
 
@@ -23,5 +23,10 @@ public class PoemController {
         ctx.json(poemDtos);
     }
 
+    private static void getById(Context ctx) {
+        int id = Integer.parseInt(ctx.pathParam("id"));
+        PoemDto poemDto = poemDao.readById(id);
+        ctx.json(poemDto);
+    }
 
 }

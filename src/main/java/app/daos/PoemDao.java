@@ -67,5 +67,15 @@ public class PoemDao {
         }
     }
 
+    public PoemDto readById(int id) {
+        try (EntityManager em = emf.createEntityManager()) {
+            Poem poem = em.find(Poem.class, id);
+            return new PoemDto(poem);
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
 }
