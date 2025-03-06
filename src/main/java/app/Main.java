@@ -46,6 +46,7 @@ public class Main {
                 emf.close();
                 System.out.println("EntityManagerFactory closed.");
             }
+            app.stop(); // TODO: Necessary????????
         }));
 
     }

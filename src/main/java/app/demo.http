@@ -1,0 +1,27 @@
+GET localhost:7070/api/poem
+
+###
+POST localhost:7070/api/poem
+Content-Type: "application/json"
+
+{
+    "name": "The Crescent-Moon, The Star Of Love",
+    "author": "William Wordsworth",
+    "year": 1842,
+    "text": "The Crescent-moon, the Star of Love,\nGlories of evening, as ye there are seen\nWith but a span of sky between\nSpeak one of you, my doubts remove,\nWhich is the attendant Page and which the Queen?"
+}
+
+###
+PUT localhost:7070/api/poem/3
+Content-Type: "application/json"
+
+{
+    "name": "The Crescent-Moon, The Star Of Love",
+    "author": "William Wordsworth",
+    "year": 1842,
+    "text": "The Crescent-moon, the Star of Love,\nGlories of evening, as ye there are seen\nWith but a span of sky between\nSpeak one of you, my doubts remove,\nWhich is the attendant Page and which the Queen?"
+}
+
+
+###
+DELETE localhost:7070/api/poem/1

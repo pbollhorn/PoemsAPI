@@ -32,4 +32,12 @@ public class Poem {
         this.text = poemDto.text();
     }
 
+    public Poem(int id, PoemDto poemDto) {
+        this.id = id;
+        this.name = poemDto.name();
+        this.author = poemDto.author();
+        this.year = poemDto.year();
+        this.text = poemDto.text();
+    }
+
 }

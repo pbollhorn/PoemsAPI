@@ -77,5 +77,28 @@ public class PoemDao {
         }
     }
 
+    public PoemDto update(int id, PoemDto poemDto) {
+        try (EntityManager em = emf.createEntityManager()) {
+            Poem poem = new Poem(id, poemDto); // ignores id in the PoemDto
+            em.getTransaction().begin();
+            poem = em.merge(poem);
+            em.getTransaction().commit();
+            return new PoemDto(poem); // this PoemDto has the correct id
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void deleteById(int id) {
+        try (EntityManager em = emf.createEntityManager()) {
+            String jpql = "DELETE FROM Poem p WHERE p.id = :id";
+            em.getTransaction().begin();
+            em.createQuery(jpql).setParameter("id", id).executeUpdate();
+            em.getTransaction().commit();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

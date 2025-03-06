@@ -16,6 +16,8 @@ public class PoemController {
         app.get(resource + "/", ctx -> getAll(ctx));
         app.get(resource + "/{id}", ctx -> getById(ctx));
         app.post(resource + "/", ctx -> create(ctx));
+        app.put(resource + "/{id}", ctx -> update(ctx));
+        app.delete(resource + "/{id}", ctx -> delete(ctx));
     }
 
     private static void getAll(Context ctx) {
@@ -30,7 +32,23 @@ public class PoemController {
     }
 
     private static void create(Context ctx) {
-
+        PoemDto poemDto = ctx.bodyAsClass(PoemDto.class);
+        poemDto = poemDao.create(poemDto);
+        ctx.json(poemDto);
     }
+
+    // Update an existing poem
+    private static void update(Context ctx) {
+        int id = Integer.parseInt(ctx.pathParam("id"));  // Go by this id
+        PoemDto poemDto = ctx.bodyAsClass(PoemDto.class);   // Ignore any id in the PoemDto
+        poemDto = poemDao.update(id, poemDto);
+        ctx.json(poemDto);
+    }
+
+    private static void delete(Context ctx) {
+        int id = Integer.parseInt(ctx.pathParam("id"));
+        poemDao.deleteById(id);
+    }
+
 
 }
