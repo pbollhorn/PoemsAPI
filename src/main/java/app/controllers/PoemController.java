@@ -1,22 +1,21 @@
 package app.controllers;
 
-import app.dtos.PoemDto;
+import java.util.List;
+
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
 import app.daos.PoemDao;
-
-import java.util.List;
+import app.dtos.PoemDto;
 
 public class PoemController {
 
     private static PoemDao poemDao = PoemDao.getInstance();
 
-    public static void addRoutes(String endpoint, Javalin app) {
-        app.get(endpoint + "/", ctx -> getAll(ctx));
-        app.get(endpoint + "/{id}", ctx -> getById(ctx));
-        app.post(endpoint + "/", ctx -> create(ctx));
-
+    public static void addRoutes(String resource, Javalin app) {
+        app.get(resource + "/", ctx -> getAll(ctx));
+        app.get(resource + "/{id}", ctx -> getById(ctx));
+        app.post(resource + "/", ctx -> create(ctx));
     }
 
     private static void getAll(Context ctx) {
